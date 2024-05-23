@@ -2,7 +2,7 @@
 title: "Integrate Python and Google Sheets"
 title-block-banner: '#001b3a'
 format: 
-    html: 
+    gfm: 
         toc-title: Contents
         toc: true
         toc-depth: 2
