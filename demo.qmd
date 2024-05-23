@@ -1,7 +1,13 @@
 ---
 title: "Integrate Python and Google Sheets"
 title-block-banner: '#001b3a'
-format: html
+format: 
+    html: 
+        toc-title: Contents
+        toc: true
+        toc-depth: 2
+        toc-location: left
+backgroundcolor: '#fafafa'
 ---
 
 A step-by-step guide to connect your google sheet with Python. You will need to:  
@@ -13,7 +19,7 @@ A step-by-step guide to connect your google sheet with Python. You will need to:
 ## Create Google Developer Credentials
   
 
-Sign in https://console.cloud.google.com/ . Once you are in, on the top next to search box, you can see a small button **My First Project** with an arrow down \
+Sign in [Google Cloud Console](https://console.cloud.google.com/). Once you are in, on the top next to search box, you can see a small button **My First Project** with an arrow down \
   
 ![](./pics/google-console.png) \
   
@@ -40,7 +46,7 @@ If you have not enabled APIs, there will be a button **Enable APIs and Services*
 Now you are in your API Library, type `google sheet api` in the search box \
   
 ![](./pics/ggs-api.png) \
-   
+  
 It will show **Google sheets API**, click **Enable**. This api allows you to write and read google sheet \ 
   
 ![](./pics/hit-enable.png) \
@@ -71,7 +77,6 @@ Choose .json and then hit **Create** \
   
 ## Grant access of the credential to your working sheet
   
-
 Now the json file is created and saved in your computer. You will want to check your folder Downloads and will find it there \  
   
 That .json contains your api type. When open it you can easily find your **client_email** \ 
@@ -86,8 +91,8 @@ Now you are able to use python and call api to the sheet you want to work with \
   
 
 Create function to authorize the google api with the json file. You need to install \
-* oauth2client
-* df2gspread  
+- oauth2client  
+- df2gspread  
 in order to authenticate the connection and read/write google sheet \
   
 ```{python}
@@ -100,7 +105,9 @@ in order to authenticate the connection and read/write google sheet \
 from pathlib import Path
 from oauth2client.service_account import ServiceAccountCredentials
 import gspread
-def gg_authentication(google_key_file: Path):
+def gg_authentication(
+    google_key_file: Path
+    ):
     scope = 'https://spreadsheets.google.com/feeds'
     credentials = ServiceAccountCredentials.from_json_keyfile_name(
         google_key_file, scope
@@ -108,10 +115,8 @@ def gg_authentication(google_key_file: Path):
     gc = gspread.authorize(credentials)
     authenticate = {'gc': gc, 'credentials': credentials}
     return authenticate
-```
+```  
 
-\
-  
 Create function to read from google sheet \
   
 ```{python}
@@ -138,10 +143,8 @@ def read_ggs(
     return data
 ```
 
-\
-  
-In the google sheet link format, you can easily find the sheet ID \
-The format is 'https://docs.google.com/spreadsheets/d/' + sheet_id +'/edit#gid=0' \
+In the google sheet link, you can easily find the sheet ID. \
+The format is *https://docs.google.com/spreadsheets/d/* + **sheet_id** + */edit#gid=0* \
   
 Let's try to read [US house price google sheet](https://docs.google.com/spreadsheets/d/1DtbVGLPklK5itHgw4c9BD1HBZo05-bYf5dXzuFirF28/edit#gid=0) \
   
@@ -154,10 +157,15 @@ Let's try to read [US house price google sheet](https://docs.google.com/spreadsh
 #| output: true
 
 from pyprojroot import here
-gg_auth = gg_authentication(here('./keys/secret_key.json'))
-data = read_ggs(gg_auth['credentials'],
-'1DtbVGLPklK5itHgw4c9BD1HBZo05-bYf5dXzuFirF28',
-'https://www.properstar.com/united-states/house-price')
+google_sheet_id = '1DtbVGLPklK5itHgw4c9BD1HBZo05-bYf5dXzuFirF28'
+wks_name = 'https://www.properstar.com/united-states/house-price'
+path = './keys/secret_key.json' # path to your credential file
+gg_auth = gg_authentication(here(path))
+data = read_ggs(
+    gg_auth['credentials'],
+    google_sheet_id,
+    wks_name
+)
 data.head()
 ```
 
