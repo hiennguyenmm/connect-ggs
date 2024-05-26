@@ -10,7 +10,7 @@ A step-by-step guide on how to read data from Google Sheets using Python. This d
 
        quarto render integrate-python-google-sheet.qmd
 
-   This will generate an HTML file in the same directory.
+   This generates the HTML file in the same directory.
 
 
 **Pending**  
@@ -24,7 +24,7 @@ Publish to my Github page
 |
 ├── pics                <- demo pics for the document
 |
-│── integrate-python-google-sheet.qmd                <- instruction how to connect Python with Google sheet in Quarto
+│── integrate-python-google-sheet.qmd    <- instruction how to connect Python with Google sheet in Quarto
 |
 │── .gitignore         
 ```
