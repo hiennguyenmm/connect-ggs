@@ -10,97 +10,95 @@ format:
 backgroundcolor: '#fafafa'
 ---
 
-A step-by-step guide to connect your google sheet with Python. You will need to:  
-1. Create your Google Developer Credentials  
-2. Grant access of the credential you just created to your working google sheet  
+
+A step-by-step guide to connecting your Google Sheet with Python. You will need to:  
+1. Create Google Developer Credentials  
+2. Grant access to your Google Sheet using the credentials you created  
 3. Connect to the sheet using Python
 
 
 ## Create Google Developer Credentials
   
 
-Sign in [Google Cloud Console](https://console.cloud.google.com/). Once you are in, on the top next to search box, you can see a small button **My First Project** with an arrow down \
+Sign in [Google Cloud Console](https://console.cloud.google.com/). Once inside, look for a small button labeled **My First Project** with a downward arrow, located next to the search box at the top \
   
 ![](./pics/google-console.png) \
   
-Click on the button and it will open a small window. At the top left, select **New Project** \
+Click on this button to open a small window. In the top left corner of this window, select **New Project** \
   
 ![](./pics/new-project.png) \
   
-Now enter your **Project name**. We can use one project for all Python connections instead of creating a new one for every project so I named mine `google-sheet-api`. You can also rename the project ID if you like \ 
+Now enter your **Project name**. To maintain consistency across Python connections, you can use a single project rather than creating new ones for each project. I named mine `google-sheet-api`. You can also choose to rename the project ID if desired \ 
   
 ![](./pics/create-project.png) \
   
-After hit **Create** it will load you to home screen. At the top bar now select the project that you just created \
+After naming your project, click **Create**. This action will lead you back to the home screen.At the top bar, select the project you've just created \
   
 ![](./pics/select-new-project.png) \
   
-Now you are working in the project you created. Under **Quick access** chooe **APIs & Service** \  
+This ensures you're working within the correct project. Under **Quick access**, chooe **APIs & Service** \  
   
 ![](./pics/api.png) \
   
-If you have not enabled APIs, there will be a button **Enable APIs and Services** suggested on the screen. Click on the button \
+If you have not enabled APIs, there will be a button **Enable APIs and Services** suggested on the screen. Click on this button \
   
 ![](./pics/enable-api.png) \ 
   
-Now you are in your API Library, type `google sheet api` in the search box \
+Now you'll be directed to the API Library. In the search box, type `google sheet api` \
   
 ![](./pics/ggs-api.png) \
   
-It will show **Google sheets API**, click **Enable**. This api allows you to write and read google sheet \ 
+Once located, click on **Google sheets API** then click **Enable**. This API enables both reading and writing to Google Sheets \ 
   
 ![](./pics/hit-enable.png) \
   
-Now you are directed to a monitoring board of your project. On the left side choose **Credentials** \ 
+After enabling the API, you'll be directed to the monitoring board of your project. On the left-hand side, select **Credentials** \ 
   
 ![](./pics/create-credentials.png) \ 
   
-Now click **Create credentials** \
+Click **Create credentials** \
   
 ![](./pics/credentials.png) \
   
-Depends on the type of data, platform, and access methodology choose access credential that is right for you. In this case i choose **Service account** \
+Depending on your data, platform, and access requirements, choose the access credential type that suits your needs. In this instance, I choose **Service account** \
   
-Fill **Service account name** and **Service account ID** then click **Done** \  
+Fill in **Service account name** and **Service account ID** then click **Done** \  
   
 ![](./pics/fill-in.png) \
   
-Now you are directed to your Credentials board \
+You'll now find yourself on the Credentials board \
   
 ![](./pics/credentialboard.png) \
   
-At **Service Accounts** there is new account that you just created. Click on the account and choose **Key** to create new key \
+Under **Service Accounts** you'll see the new account you've just created. Click on the account and select **Key** to generate a new key \
   
 ![](./pics/create-key.png) \
   
-Choose .json and then hit **Create** \
+Choose the .json format and click **Create** \
   
-## Grant access of the credential to your working sheet
+## Grant access to your Google Sheet using the credentials you created
   
-Now the json file is created and saved in your computer. You will want to check your folder Downloads and will find it there \  
+This action generates a .json file, which is automatically saved on your computer. You can typically find this file in your Downloads folder \  
   
-That .json contains your api type. When open it you can easily find your **client_email** \ 
+The .json file contains your API credentials, including the **client_email** \ 
   
 ![](./pics/client_email.png) \
   
-Now open your working Google sheet, at **Share** button grant that email to be Editor \
+Open your working Google Sheet. Click on the **Share** button and grant editing permission to the email associated with the **client_email** \
   
-Now you are able to use python and call api to the sheet you want to work with \
+This ensures that Python can access the sheet via the API \
   
 ## Connect to the sheet using Python 
   
 
-Create function to authorize the google api with the json file. You need to install \
+Create a function to authorize the Google API using the JSON file. You will need to install the following packages to authenticate the connection and read/write Google Sheets \
 - oauth2client  
 - df2gspread  
-in order to authenticate the connection and read/write google sheet \
   
 ```{python}
 #| code-fold: false
-#| code-summary: "Show the code"
-#| eval: true # Evaluate this chunk
-#| echo: true # Do show this chunk in the final rendered document
-#| output: true
+#| eval: true 
+#| echo: true 
 
 from pathlib import Path
 from oauth2client.service_account import ServiceAccountCredentials
@@ -117,14 +115,12 @@ def gg_authentication(
     return authenticate
 ```  
 
-Create function to read from google sheet \
+Create function to read Google Sheet \
   
 ```{python}
 #| code-fold: false
-#| code-summary: "Show the code"
-#| eval: true # Evaluate this chunk
-#| echo: true # Do show this chunk in the final rendered document
-#| output: true
+#| eval: true 
+#| echo: true 
 import pandas as pd
 import oauth2client
 from df2gspread import gspread2df as g2d
@@ -143,7 +139,7 @@ def read_ggs(
     return data
 ```
 
-In the google sheet link, you can easily find the sheet ID. \
+In the Google Sheets link, you can easily find the sheet ID \
 The format is *https://docs.google.com/spreadsheets/d/* + **sheet_id** + */edit#gid=0* \
   
 Let's try to read [US house price google sheet](https://docs.google.com/spreadsheets/d/1DtbVGLPklK5itHgw4c9BD1HBZo05-bYf5dXzuFirF28/edit#gid=0) \
@@ -159,7 +155,7 @@ Let's try to read [US house price google sheet](https://docs.google.com/spreadsh
 from pyprojroot import here
 google_sheet_id = '1DtbVGLPklK5itHgw4c9BD1HBZo05-bYf5dXzuFirF28'
 wks_name = 'https://www.properstar.com/united-states/house-price'
-path = './keys/secret_key.json' # path to your credential file
+path = './keys/secret_key.json' # path to your credential file on local machine
 gg_auth = gg_authentication(here(path))
 data = read_ggs(
     gg_auth['credentials'],
@@ -170,4 +166,3 @@ data.head()
 ```
 
 \   
-Now you are able to connect Python to your Google sheet.
