@@ -111,7 +111,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
    
   <ul class="collapse">
   <li><a href="#create-google-developer-credentials" id="toc-create-google-developer-credentials" class="nav-link active" data-scroll-target="#create-google-developer-credentials">Create Google Developer Credentials</a></li>
-  <li><a href="#grant-access-of-the-credential-to-your-working-sheet" id="toc-grant-access-of-the-credential-to-your-working-sheet" class="nav-link" data-scroll-target="#grant-access-of-the-credential-to-your-working-sheet">Grant access of the credential to your working sheet</a></li>
+  <li><a href="#grant-access-to-your-google-sheet-using-the-credentials-you-created" id="toc-grant-access-to-your-google-sheet-using-the-credentials-you-created" class="nav-link" data-scroll-target="#grant-access-to-your-google-sheet-using-the-credentials-you-created">Grant access to your Google Sheet using the credentials you created</a></li>
   <li><a href="#connect-to-the-sheet-using-python" id="toc-connect-to-the-sheet-using-python" class="nav-link" data-scroll-target="#connect-to-the-sheet-using-python">Connect to the sheet using Python</a></li>
   </ul>
 </nav>
@@ -123,80 +123,78 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 
 
-<p>A step-by-step guide to connect your google sheet with Python. You will need to:<br>
-1. Create your Google Developer Credentials<br>
-2. Grant access of the credential you just created to your working google sheet<br>
+<p>A step-by-step guide to connecting your Google Sheet with Python. You will need to:<br>
+1. Create Google Developer Credentials<br>
+2. Grant access to your Google Sheet using the credentials you created<br>
 3. Connect to the sheet using Python</p>
 <section id="create-google-developer-credentials" class="level2">
 <h2 class="anchored" data-anchor-id="create-google-developer-credentials">Create Google Developer Credentials</h2>
-<p>Sign in <a href="https://console.cloud.google.com/">Google Cloud Console</a>. Once you are in, on the top next to search box, you can see a small button <strong>My First Project</strong> with an arrow down<br>
+<p>Sign in <a href="https://console.cloud.google.com/">Google Cloud Console</a>. Once inside, look for a small button labeled <strong>My First Project</strong> with a downward arrow, located next to the search box at the top<br>
 </p>
 <p><img src="./pics/google-console.png" class="quarto-discovered-preview-image img-fluid"><br>
 </p>
-<p>Click on the button and it will open a small window. At the top left, select <strong>New Project</strong><br>
+<p>Click on this button to open a small window. In the top left corner of this window, select <strong>New Project</strong><br>
 </p>
 <p><img src="./pics/new-project.png" class="img-fluid"><br>
 </p>
-<p>Now enter your <strong>Project name</strong>. We can use one project for all Python connections instead of creating a new one for every project so I named mine <code>google-sheet-api</code>. You can also rename the project ID if you like &nbsp;</p>
+<p>Now enter your <strong>Project name</strong>. To maintain consistency across Python connections, you can use a single project rather than creating new ones for each project. I named mine <code>google-sheet-api</code>. You can also choose to rename the project ID if desired &nbsp;</p>
 <p><img src="./pics/create-project.png" class="img-fluid"><br>
 </p>
-<p>After hit <strong>Create</strong> it will load you to home screen. At the top bar now select the project that you just created<br>
+<p>After naming your project, click <strong>Create</strong>. This action will lead you back to the home screen. At the top bar, select the project you’ve just created<br>
 </p>
 <p><img src="./pics/select-new-project.png" class="img-fluid"><br>
 </p>
-<p>Now you are working in the project you created. Under <strong>Quick access</strong> chooe <strong>APIs &amp; Service</strong> &nbsp;</p>
+<p>This ensures you’re working within the correct project. Under <strong>Quick access</strong>, choose <strong>APIs &amp; Service</strong> &nbsp;</p>
 <p><img src="./pics/api.png" class="img-fluid"><br>
 </p>
-<p>If you have not enabled APIs, there will be a button <strong>Enable APIs and Services</strong> suggested on the screen. Click on the button<br>
+<p>If you have not enabled APIs, there will be a button <strong>Enable APIs and Services</strong> suggested on the screen. Click on this button<br>
 </p>
 <p><img src="./pics/enable-api.png" class="img-fluid"> &nbsp;</p>
-<p>Now you are in your API Library, type <code>google sheet api</code> in the search box<br>
+<p>Now you’ll be directed to the API Library. In the search box, type <code>google sheet api</code><br>
 </p>
 <p><img src="./pics/ggs-api.png" class="img-fluid"><br>
 </p>
-<p>It will show <strong>Google sheets API</strong>, click <strong>Enable</strong>. This api allows you to write and read google sheet &nbsp;</p>
+<p>Once located, click on <strong>Google sheets API</strong> then click <strong>Enable</strong>. This API enables both reading and writing to Google Sheets &nbsp;</p>
 <p><img src="./pics/hit-enable.png" class="img-fluid"><br>
 </p>
-<p>Now you are directed to a monitoring board of your project. On the left side choose <strong>Credentials</strong> &nbsp;</p>
+<p>After enabling the API, you’ll be directed to the monitoring board of your project. On the left-hand side, select <strong>Credentials</strong> &nbsp;</p>
 <p><img src="./pics/create-credentials.png" class="img-fluid"> &nbsp;</p>
-<p>Now click <strong>Create credentials</strong><br>
+<p>Click <strong>Create credentials</strong><br>
 </p>
 <p><img src="./pics/credentials.png" class="img-fluid"><br>
 </p>
-<p>Depends on the type of data, platform, and access methodology choose access credential that is right for you. In this case i choose <strong>Service account</strong><br>
+<p>Depending on your data, platform, and access requirements, choose the access credential type that suits your needs. In this instance, I choose <strong>Service account</strong><br>
 </p>
-<p>Fill <strong>Service account name</strong> and <strong>Service account ID</strong> then click <strong>Done</strong> &nbsp;</p>
+<p>Fill in <strong>Service account name</strong> and <strong>Service account ID</strong> then click <strong>Done</strong> &nbsp;</p>
 <p><img src="./pics/fill-in.png" class="img-fluid"><br>
 </p>
-<p>Now you are directed to your Credentials board<br>
+<p>You’ll now find yourself on the Credentials board<br>
 </p>
 <p><img src="./pics/credentialboard.png" class="img-fluid"><br>
 </p>
-<p>At <strong>Service Accounts</strong> there is new account that you just created. Click on the account and choose <strong>Key</strong> to create new key<br>
+<p>Under <strong>Service Accounts</strong> you’ll see the new account you’ve just created. Click on the account and select <strong>Key</strong> to generate a new key<br>
 </p>
 <p><img src="./pics/create-key.png" class="img-fluid"><br>
 </p>
-<p>Choose .json and then hit <strong>Create</strong><br>
+<p>Choose the .json format and click <strong>Create</strong><br>
 </p>
 </section>
-<section id="grant-access-of-the-credential-to-your-working-sheet" class="level2">
-<h2 class="anchored" data-anchor-id="grant-access-of-the-credential-to-your-working-sheet">Grant access of the credential to your working sheet</h2>
-<p>Now the json file is created and saved in your computer. You will want to check your folder Downloads and will find it there &nbsp;</p>
-<p>That .json contains your api type. When open it you can easily find your <strong>client_email</strong> &nbsp;</p>
+<section id="grant-access-to-your-google-sheet-using-the-credentials-you-created" class="level2">
+<h2 class="anchored" data-anchor-id="grant-access-to-your-google-sheet-using-the-credentials-you-created">Grant access to your Google Sheet using the credentials you created</h2>
+<p>This action generates a .json file, which is automatically saved on your computer. You can typically find this file in your Downloads folder &nbsp;</p>
+<p>The .json file contains your API credentials, including the <strong>client_email</strong> &nbsp;</p>
 <p><img src="./pics/client_email.png" class="img-fluid"><br>
 </p>
-<p>Now open your working Google sheet, at <strong>Share</strong> button grant that email to be Editor<br>
+<p>Open your working Google Sheet. Click on the <strong>Share</strong> button and grant editing permission to the email associated with the <strong>client_email</strong><br>
 </p>
-<p>Now you are able to use python and call api to the sheet you want to work with<br>
+<p>This ensures that Python can access the sheet via the API<br>
 </p>
 </section>
 <section id="connect-to-the-sheet-using-python" class="level2">
 <h2 class="anchored" data-anchor-id="connect-to-the-sheet-using-python">Connect to the sheet using Python</h2>
-<p>Create function to authorize the google api with the json file. You need to install<br>
+<p>Create a function to authorize the Google API using the JSON file. You will need to install the following packages to authenticate the connection and read/write Google Sheets<br>
 - oauth2client<br>
-- df2gspread<br>
-in order to authenticate the connection and read/write google sheet<br>
-</p>
+- df2gspread</p>
 <div class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> pathlib <span class="im">import</span> Path</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> oauth2client.service_account <span class="im">import</span> ServiceAccountCredentials</span>
@@ -212,7 +210,7 @@ in order to authenticate the connection and read/write google sheet<br>
 <span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>    authenticate <span class="op">=</span> {<span class="st">'gc'</span>: gc, <span class="st">'credentials'</span>: credentials}</span>
 <span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> authenticate</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>Create function to read from google sheet<br>
+<p>Create function to read Google Sheet<br>
 </p>
 <div class="cell" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
@@ -232,7 +230,7 @@ in order to authenticate the connection and read/write google sheet<br>
 <span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>    )</span>
 <span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> data</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>In the google sheet link, you can easily find the sheet ID.<br>
+<p>In the Google Sheets link, you can easily find the sheet ID<br>
 The format is <em>https://docs.google.com/spreadsheets/d/</em> + <strong>sheet_id</strong> + <em>/edit#gid=0</em><br>
 </p>
 <p>Let’s try to read <a href="https://docs.google.com/spreadsheets/d/1DtbVGLPklK5itHgw4c9BD1HBZo05-bYf5dXzuFirF28/edit#gid=0">US house price google sheet</a><br>
@@ -241,7 +239,7 @@ The format is <em>https://docs.google.com/spreadsheets/d/</em> + <strong>sheet_i
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> pyprojroot <span class="im">import</span> here</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>google_sheet_id <span class="op">=</span> <span class="st">'1DtbVGLPklK5itHgw4c9BD1HBZo05-bYf5dXzuFirF28'</span></span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>wks_name <span class="op">=</span> <span class="st">'https://www.properstar.com/united-states/house-price'</span></span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>path <span class="op">=</span> <span class="st">'./keys/secret_key.json'</span> <span class="co"># path to your credential file</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>path <span class="op">=</span> <span class="st">'./keys/secret_key.json'</span> <span class="co"># path to your credential file on local machine</span></span>
 <span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>gg_auth <span class="op">=</span> gg_authentication(here(path))</span>
 <span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> read_ggs(</span>
 <span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>    gg_auth[<span class="st">'credentials'</span>],</span>
@@ -299,8 +297,7 @@ The format is <em>https://docs.google.com/spreadsheets/d/</em> + <strong>sheet_i
 </div>
 </div>
 </div>
-<p>&nbsp;<br>
-Now you are able to connect Python to your Google sheet.</p>
+<p>&nbsp;</p>
 </section>
 
 </main>

@@ -32,11 +32,11 @@ Now enter your **Project name**. To maintain consistency across Python connectio
   
 ![](./pics/create-project.png) \
   
-After naming your project, click **Create**. This action will lead you back to the home screen.At the top bar, select the project you've just created \
+After naming your project, click **Create**. This action will lead you back to the home screen. At the top bar, select the project you've just created \
   
 ![](./pics/select-new-project.png) \
   
-This ensures you're working within the correct project. Under **Quick access**, chooe **APIs & Service** \  
+This ensures you're working within the correct project. Under **Quick access**, choose **APIs & Service** \  
   
 ![](./pics/api.png) \
   
